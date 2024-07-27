@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>{% block title %} Register {% endblock %}</title>
+</head>
+<body>
+    <h1>Register</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.username.label }}
+        {{ form.username}}
+        {{ form.email.label }}
+        {{ form.email }}
+        {{ form.password1.label }}
+        {{ form.password1 }}
+        {{ form.password2.label }}
+        {{ form.password2 }}
+
+        <button type="submit">Register</button>
+    </form>
+     {{form.errors}}
+    <p>Already registered? <a href="{% url 'login_view' %}">Login here</a></p>
+
+</body>
+</html>

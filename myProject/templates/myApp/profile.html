@@ -1,0 +1,27 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Your Profile</h1>
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}</p>
+        <form method="GET"> 
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update Profile</button>
+        </form>
+        {% if user.userprofile.picture %}
+            <img src="{{ user.userprofile.picture.url }}" alt="Profile picture">
+        {% endif %}
+        
+    {% else %}
+        <p>You are not logged in.</p>
+    {% endif %}
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
+{% endblock %}
